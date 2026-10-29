@@ -1,29 +1,39 @@
-import { useState } from "react";
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./componants/Navbar";
-import Footer from "./componants/Footer";
-import Contact from "./pages/Contact";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+
+// Public layout
+import PublicLayout from "./layouts/PublicLayout";
 import Home from "./pages/Home";
-import Donate from "./pages/Donate";
 import Event from "./pages/Event";
+import Contact from "./pages/Contact";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+
+// Portal landing pages (info pages on main site)
+import VolunteerPortal from "./pages/VolunteerPortal";
+import DonorPortal from "./pages/DonorPortal";
+import AdminPortal from "./pages/AdminPortal";
 
 function App() {
   return (
-    <>
-      <Router>
-        <Navbar />
+    <AuthProvider>
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/" element={<Navbar />} />
-          <Route path="/" element={<Footer />} />
-          <Route path="/Contact" element={<Contact />} />
-          <Route path="/Donate" element={<Donate />} />
-          <Route path="/Event" element={<Event />} />
+          <Route element={<PublicLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/events" element={<Event />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            {/* Info/landing pages — these link to the separate portal apps */}
+            <Route path="/volunteer-portal" element={<VolunteerPortal />} />
+            <Route path="/donor-portal" element={<DonorPortal />} />
+            <Route path="/admin-portal" element={<AdminPortal />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-        <Footer />
-      </Router>
-    </>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

@@ -1,52 +1,28 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const donationSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: [true, 'Name is required'],
-      trim: true,
-    },
-    phone: {
-      type: String,
-      required: [true, 'Phone number is required'],
-      match: [/^\d{10}$/, 'Phone number must be 10 digits'],
-    },
-    date: {
-      type: Date,
-      required: [true, 'Date is required'],
-    },
-    location: {
-      type: String,
-      required: [true, 'Location is required'],
-      trim: true,
-    },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    name: { type: String, required: true, trim: true },
+    phone: { type: String, required: true },
+    date: { type: Date, required: true },
+    location: { type: String, required: true, trim: true },
     donationType: {
       type: String,
-      required: [true, 'Donation type is required'],
-      enum: ['food', 'clothing', 'money', 'education', 'medical'],
+      required: true,
+      enum: ["food", "clothing", "money", "education", "medical"],
     },
-    amount: {
-      type: Number,
-      validate: {
-        validator: function (value) {
-          // Only validate amount if donationType is 'money'
-          if (this.donationType === 'money') {
-            return value > 0;
-          }
-          return true;
-        },
-        message: 'Amount must be a positive number when donationType is money',
-      },
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
+    amount: { type: Number },
+    note: { type: String, default: "" },
+    paymentId: { type: String },
+    orderId: { type: String },
+    paymentStatus: {
+      type: String,
+      enum: ["pending", "paid", "failed"],
+      default: "pending",
     },
   },
-  {
-    versionKey: false, // optional: removes __v field
-  }
+  { timestamps: true }
 );
 
-module.exports = mongoose.model('Donation', donationSchema);
+module.exports = mongoose.model("Donation", donationSchema);
