@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 const API = (import.meta.env.VITE_API_URL !== undefined && import.meta.env.VITE_API_URL !== null) ? import.meta.env.VITE_API_URL : (import.meta.env.PROD ? "" : "http://localhost:5000");
@@ -56,7 +56,7 @@ export default function AdminEvents() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-1">Events ðŸ“…</h1>
+          <h1 className="text-2xl font-bold text-gray-800 mb-1">Events 📅</h1>
           <p className="text-gray-500">Create and manage public events.</p>
         </div>
         <button onClick={() => setShowForm(!showForm)}
@@ -112,7 +112,7 @@ export default function AdminEvents() {
               {ev.description && <p className="text-sm text-gray-500 mb-3 line-clamp-2">{ev.description}</p>}
               {(ev.date || ev.location) && (
                 <div className="text-xs text-gray-400 space-y-1 mb-4">
-                  {ev.date && <p>ðŸ“… {ev.date}</p>}
+                  {ev.date && <p>📅 {ev.date}</p>}
                   {ev.location && <p>ðŸ“ {ev.location}</p>}
                 </div>
               )}

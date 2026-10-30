@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 const API = (import.meta.env.VITE_API_URL !== undefined && import.meta.env.VITE_API_URL !== null) ? import.meta.env.VITE_API_URL : (import.meta.env.PROD ? "" : "http://localhost:5000");
@@ -58,7 +58,7 @@ export default function AdminContacts() {
                 </div>
                 <a href={`mailto:${selected.email}`}
                   className="mt-4 inline-block px-5 py-2 bg-[#004B8D] text-white rounded-xl text-sm font-semibold hover:bg-blue-800 transition">
-                  Reply via Email â†’
+                  Reply via Email →
                 </a>
               </div>
             ) : (

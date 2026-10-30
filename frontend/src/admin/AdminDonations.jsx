@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 const API = (import.meta.env.VITE_API_URL !== undefined && import.meta.env.VITE_API_URL !== null) ? import.meta.env.VITE_API_URL : (import.meta.env.PROD ? "" : "http://localhost:5000");
@@ -55,7 +55,7 @@ export default function AdminDonations() {
                   <td className="px-4 py-3 font-medium text-gray-700">{d.name}</td>
                   <td className="px-4 py-3 text-gray-500">{d.phone}</td>
                   <td className="px-4 py-3 capitalize text-gray-600">{d.donationType}</td>
-                  <td className="px-4 py-3 text-gray-600">{d.donationType === "money" ? `â‚¹${d.amount?.toLocaleString("en-IN")}` : "â€”"}</td>
+                  <td className="px-4 py-3 text-gray-600">{d.donationType === "money" ? `₹${d.amount?.toLocaleString("en-IN")}` : "—"}</td>
                   <td className="px-4 py-3 text-gray-500">{d.location}</td>
                   <td className="px-4 py-3 text-gray-400 text-xs">{new Date(d.createdAt).toLocaleDateString("en-IN")}</td>
                   <td className="px-4 py-3">

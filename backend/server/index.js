@@ -21,14 +21,45 @@ app.use(cors());
 app.use(express.json());
 
 // ===== MONGODB CONNECT =====
+const seedAdmin = async () => {
+  try {
+    const admin = await User.findOne({ role: "admin" });
+    if (!admin) {
+      const hashed = await bcrypt.hash("Admin@123", 10);
+      await User.create({
+        name: "Admin",
+        email: "admin@smilefoundation.org",
+        password: hashed,
+        role: "admin",
+      });
+      console.log("✅ Default admin seeded: admin@smilefoundation.org / Admin@123");
+    }
+  } catch (err) {
+    console.warn("⚠️ Admin seed check:", err.message);
+  }
+};
+
 if (process.env.MONGO_URI) {
   mongoose
     .connect(process.env.MONGO_URI)
-    .then(() => console.log("✅ Connected to MongoDB"))
-    .catch((err) => console.error("❌ MongoDB error:", err));
+    .then(() => {
+      console.log("✅ Connected to MongoDB");
+      seedAdmin();
+    })
+    .catch((err) => console.error("❌ MongoDB connection error:", err));
 } else {
-  console.warn("⚠️ MONGO_URI is not set. Please set MONGO_URI in your environment variables.");
+  console.warn("⚠️ MONGO_URI is not set. Please set MONGO_URI in your Render environment variables.");
 }
+
+// Database connectivity check for API routes
+app.use("/api", (req, res, next) => {
+  if (mongoose.connection.readyState !== 1) {
+    return res.status(503).json({
+      error: "Database is not connected. Please ensure MONGO_URI is set in Render Environment Variables.",
+    });
+  }
+  next();
+});
 
 // ===== NODEMAILER SETUP =====
 const transporter = nodemailer.createTransport({
@@ -84,7 +115,8 @@ app.post("/api/auth/register", async (req, res) => {
     );
     res.status(201).json({ token, user: { id: user._id, name: user.name, role: user.role, email: user.email } });
   } catch (err) {
-    res.status(500).json({ error: "Registration failed" });
+    console.error("❌ Registration error:", err);
+    res.status(500).json({ error: err.message || "Registration failed" });
   }
 });
 
@@ -103,7 +135,8 @@ app.post("/api/auth/login", async (req, res) => {
     );
     res.json({ token, user: { id: user._id, name: user.name, role: user.role, email: user.email } });
   } catch (err) {
-    res.status(500).json({ error: "Login failed" });
+    console.error("❌ Login error:", err);
+    res.status(500).json({ error: err.message || "Login failed" });
   }
 });
 

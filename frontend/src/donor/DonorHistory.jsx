@@ -1,9 +1,9 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 const API = (import.meta.env.VITE_API_URL !== undefined && import.meta.env.VITE_API_URL !== null) ? import.meta.env.VITE_API_URL : (import.meta.env.PROD ? "" : "http://localhost:5000");
 
-const typeIcon = { money: "ðŸ’°", food: "ðŸ±", clothing: "ðŸ‘•", education: "ðŸ“š", medical: "ðŸ’Š" };
+const typeIcon = { money: "💰", food: "ðŸ±", clothing: "👕", education: "📚", medical: "💊" };
 
 export default function DonorHistory() {
   const { token } = useAuth();
@@ -23,15 +23,15 @@ export default function DonorHistory() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-800 mb-1">My Donation History ðŸ“‹</h1>
+      <h1 className="text-2xl font-bold text-gray-800 mb-1">My Donation History 📋</h1>
       <p className="text-gray-500 mb-8">A record of all your generous contributions.</p>
 
       {donations.length === 0 ? (
         <div className="bg-white rounded-2xl p-12 text-center border border-gray-100">
-          <div className="text-5xl mb-4">ðŸ¤²</div>
+          <div className="text-5xl mb-4">🤲</div>
           <p className="text-gray-500 mb-4">You haven't made any donations yet.</p>
           <a href="/donate" className="inline-block px-6 py-2.5 bg-[#004B8D] text-white rounded-xl text-sm font-semibold hover:bg-blue-800 transition">
-            Make Your First Donation â†’
+            Make Your First Donation →
           </a>
         </div>
       ) : (
@@ -50,10 +50,10 @@ export default function DonorHistory() {
               {donations.map((d) => (
                 <tr key={d._id} className="hover:bg-gray-50 transition">
                   <td className="px-5 py-4 font-medium text-gray-700 capitalize">
-                    {typeIcon[d.donationType] || "ðŸ“¦"} {d.donationType}
+                    {typeIcon[d.donationType] || "📦"} {d.donationType}
                   </td>
                   <td className="px-5 py-4 text-gray-600">
-                    {d.donationType === "money" ? `â‚¹${d.amount?.toLocaleString("en-IN")}` : "â€”"}
+                    {d.donationType === "money" ? `₹${d.amount?.toLocaleString("en-IN")}` : "—"}
                   </td>
                   <td className="px-5 py-4 text-gray-600">{d.location}</td>
                   <td className="px-5 py-4 text-gray-500">
@@ -63,7 +63,7 @@ export default function DonorHistory() {
                     <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${
                       d.paymentStatus === "paid" ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"
                     }`}>
-                      {d.paymentStatus === "paid" ? "âœ… Paid" : "â³ Pending"}
+                      {d.paymentStatus === "paid" ? "✅ Paid" : "â³ Pending"}
                     </span>
                   </td>
                 </tr>

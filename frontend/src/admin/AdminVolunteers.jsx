@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 const API = (import.meta.env.VITE_API_URL !== undefined && import.meta.env.VITE_API_URL !== null) ? import.meta.env.VITE_API_URL : (import.meta.env.PROD ? "" : "http://localhost:5000");
@@ -29,7 +29,7 @@ export default function AdminVolunteers() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-800 mb-1">Volunteers ðŸŒŸ</h1>
+      <h1 className="text-2xl font-bold text-gray-800 mb-1">Volunteers 🌟</h1>
       <p className="text-gray-500 mb-6">Manage volunteer applications and their statuses.</p>
 
       {/* Filter */}
@@ -70,7 +70,7 @@ export default function AdminVolunteers() {
                   <td className="px-4 py-3 text-gray-500 text-xs">{v.email}</td>
                   <td className="px-4 py-3 text-gray-600">{v.skill}</td>
                   <td className="px-4 py-3 text-gray-500 text-xs">{v.date}</td>
-                  <td className="px-4 py-3 text-gray-400 text-xs">{v.time || "â€”"}</td>
+                  <td className="px-4 py-3 text-gray-400 text-xs">{v.time || "—"}</td>
                   <td className="px-4 py-3">
                     <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${
                       v.status === "Approved" ? "bg-green-100 text-green-700" :

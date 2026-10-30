@@ -1,15 +1,15 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 const API = (import.meta.env.VITE_API_URL !== undefined && import.meta.env.VITE_API_URL !== null) ? import.meta.env.VITE_API_URL : (import.meta.env.PROD ? "" : "http://localhost:5000");
 
 const skills = [
-  { label: "Teaching", icon: "ðŸ“–" },
-  { label: "Medical", icon: "ðŸ’Š" },
+  { label: "Teaching", icon: "📖" },
+  { label: "Medical", icon: "💊" },
   { label: "Food Distribution", icon: "ðŸ±" },
-  { label: "Event Management", icon: "ðŸŽ‰" },
-  { label: "IT Support", icon: "ðŸ’»" },
-  { label: "Fundraising", icon: "ðŸ’°" },
+  { label: "Event Management", icon: "🎉" },
+  { label: "IT Support", icon: "💻" },
+  { label: "Fundraising", icon: "💰" },
 ];
 
 export default function VolunteerApply() {
@@ -72,7 +72,7 @@ export default function VolunteerApply() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="bg-white rounded-3xl shadow-lg p-12 text-center max-w-md w-full border border-gray-100">
           <div className="w-20 h-20 rounded-full flex items-center justify-center text-4xl mx-auto mb-5"
-            style={{ background: "#dcfce7" }}>ðŸŽ‰</div>
+            style={{ background: "#dcfce7" }}>🎉</div>
           <h2 className="text-2xl font-black text-gray-900 mb-2">Application Submitted!</h2>
           <p className="text-gray-500 mb-8">Our team will review and get back to you within 24 hours.</p>
           <div className="flex gap-3 justify-center">
@@ -93,8 +93,8 @@ export default function VolunteerApply() {
 
   return (
     <div>
-      <h1 className="text-2xl font-black text-gray-900 mb-1">Apply to Volunteer âœ‹</h1>
-      <p className="text-gray-500 mb-8">Choose your skill and pick a date â€” we'll confirm your slot.</p>
+      <h1 className="text-2xl font-black text-gray-900 mb-1">Apply to Volunteer ✋</h1>
+      <p className="text-gray-500 mb-8">Choose your skill and pick a date — we'll confirm your slot.</p>
 
       <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 max-w-2xl">
         {status === "error" && (
@@ -159,7 +159,7 @@ export default function VolunteerApply() {
             </div>
             <div>
               Applying as <strong>{user?.name}</strong>
-              <span className="text-emerald-600"> Â· {user?.email}</span>
+              <span className="text-emerald-600"> · {user?.email}</span>
             </div>
           </div>
 
@@ -174,7 +174,7 @@ export default function VolunteerApply() {
                 </svg>
                 Submitting...
               </span>
-            ) : "Submit Application â†’"}
+            ) : "Submit Application →"}
           </button>
         </form>
       </div>

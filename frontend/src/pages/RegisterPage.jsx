@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -16,8 +16,8 @@ export default function RegisterPage({ portalRole = null }) {
   const isLocked = !!portalRole;
 
   const roles = [
-    { id:"donor",     label:"I want to Donate",   emoji:"ðŸ’", accent:"#1d4ed8", ring:"#3b82f6", softBg:"#eff6ff", grad:"linear-gradient(135deg,#1e40af,#3b82f6)" },
-    { id:"volunteer", label:"I want to Volunteer", emoji:"ðŸŒ¿", accent:"#047857", ring:"#10b981", softBg:"#ecfdf5", grad:"linear-gradient(135deg,#065f46,#10b981)" },
+    { id:"donor",     label:"I want to Donate",   emoji:"💝", accent:"#1d4ed8", ring:"#3b82f6", softBg:"#eff6ff", grad:"linear-gradient(135deg,#1e40af,#3b82f6)" },
+    { id:"volunteer", label:"I want to Volunteer", emoji:"🌿", accent:"#047857", ring:"#10b981", softBg:"#ecfdf5", grad:"linear-gradient(135deg,#065f46,#10b981)" },
   ];
   const sel = roles.find(r => r.id === role) || roles[0];
 
@@ -93,7 +93,7 @@ export default function RegisterPage({ portalRole = null }) {
           </div>
 
           <div style={{ background:"white", borderRadius:28, boxShadow:"0 20px 60px rgba(0,0,0,0.08)", padding:"40px 36px" }}>
-            <h2 style={{ fontSize:24, fontWeight:900, color:"#0f172a", margin:"0 0 4px" }}>Create account âœ¨</h2>
+            <h2 style={{ fontSize:24, fontWeight:900, color:"#0f172a", margin:"0 0 4px" }}>Create account ✨</h2>
             <p style={{ color:"#94a3b8", fontSize:14, margin:"0 0 22px" }}>Join our community and make a difference</p>
 
             {!isLocked && (
@@ -117,7 +117,7 @@ export default function RegisterPage({ portalRole = null }) {
 
             {error && (
               <div style={{ background:"#fef2f2", border:"1px solid #fecaca", color:"#dc2626", borderRadius:12, padding:"12px 16px", fontSize:13, marginBottom:14 }}>
-                âš ï¸ {error}
+                ⚠️ï¸ {error}
               </div>
             )}
 
@@ -143,12 +143,12 @@ export default function RegisterPage({ portalRole = null }) {
                   onFocus={e=>e.target.style.borderColor=sel.ring} onBlur={e=>e.target.style.borderColor="#e2e8f0"} />
                 <button type="button" onClick={()=>setShowPass(!showPass)}
                   style={{ position:"absolute", right:12, bottom:12, background:"none", border:"none", cursor:"pointer", fontSize:14, padding:0 }}>
-                  {showPass?"ðŸ™ˆ":"ðŸ‘ï¸"}
+                  {showPass?"🙈":"ðŸ‘ï¸"}
                 </button>
               </div>
               <button type="submit" disabled={loading}
                 style={{ width:"100%", padding:"14px", background:loading?"#94a3b8":sel.accent, color:"white", fontWeight:800, fontSize:15, border:"none", borderRadius:14, cursor:loading?"not-allowed":"pointer", fontFamily:"inherit", transition:"background 0.2s" }}>
-                {loading ? "Creating account..." : `Register as ${role==="donor"?"Donor":"Volunteer"} â†’`}
+                {loading ? "Creating account..." : `Register as ${role==="donor"?"Donor":"Volunteer"} →`}
               </button>
             </form>
 

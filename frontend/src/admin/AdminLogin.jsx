@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -88,7 +88,7 @@ export default function AdminLogin({ redirectTo = null }) {
             ðŸ›¡ï¸
           </div>
           <h1 style={{ color:"white", fontSize:24, fontWeight:900, margin:0, letterSpacing:"-0.5px" }}>Admin Portal</h1>
-          <p style={{ color:"#64748b", fontSize:13, margin:"6px 0 0" }}>Smile Foundation Â· Authorized Access Only</p>
+          <p style={{ color:"#64748b", fontSize:13, margin:"6px 0 0" }}>Smile Foundation · Authorized Access Only</p>
         </div>
 
         {/* Card */}
@@ -101,7 +101,7 @@ export default function AdminLogin({ redirectTo = null }) {
         }}>
           {error && (
             <div style={{ background:"rgba(239,68,68,0.1)", border:"1px solid rgba(239,68,68,0.25)", color:"#f87171", borderRadius:12, padding:"12px 16px", fontSize:13, marginBottom:20, display:"flex", gap:8, alignItems:"center" }}>
-              âš ï¸ {error}
+              ⚠️ï¸ {error}
             </div>
           )}
 
@@ -131,7 +131,7 @@ export default function AdminLogin({ redirectTo = null }) {
                 />
                 <button type="button" onClick={()=>setShowPass(!showPass)}
                   style={{ position:"absolute", right:14, top:"50%", transform:"translateY(-50%)", background:"none", border:"none", cursor:"pointer", fontSize:16, padding:0 }}>
-                  {showPass ? "ðŸ™ˆ" : "ðŸ‘ï¸"}
+                  {showPass ? "🙈" : "ðŸ‘ï¸"}
                 </button>
               </div>
             </div>
@@ -158,7 +158,7 @@ export default function AdminLogin({ redirectTo = null }) {
               Not an admin?{" "}
              
 <a href="/" style={{ color:"#f59e0b", fontWeight:700, textDecoration:"none" }}>
-  Back to Main Site â†’
+  Back to Main Site →
 </a>
             </p>
           </div>
@@ -166,7 +166,7 @@ export default function AdminLogin({ redirectTo = null }) {
 
         {/* Security badge */}
         <p style={{ textAlign:"center", fontSize:11, color:"#334155", marginTop:20 }}>
-          ðŸ”’ Secured connection Â· All access is logged
+          🔒 Secured connection · All access is logged
         </p>
       </div>
     </div>

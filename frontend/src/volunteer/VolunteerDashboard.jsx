@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -22,29 +22,29 @@ export default function VolunteerDashboard() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-800 mb-1">Welcome, {user?.name}! ðŸŒŸ</h1>
+      <h1 className="text-2xl font-bold text-gray-800 mb-1">Welcome, {user?.name}! 🌟</h1>
       <p className="text-gray-500 mb-8">Your volunteering journey at Smile Foundation.</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
         <StatCard icon="ðŸ“" label="Total Applications" value={records.length} color="blue" />
-        <StatCard icon="âœ…" label="Approved" value={approved} color="green" />
+        <StatCard icon="✅" label="Approved" value={approved} color="green" />
         <StatCard icon="â³" label="Pending" value={pending} color="yellow" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
         <Link to="/apply"
           className="bg-emerald-700 text-white rounded-2xl p-6 hover:bg-emerald-800 transition group">
-          <div className="text-3xl mb-3">âœ‹</div>
+          <div className="text-3xl mb-3">✋</div>
           <h3 className="text-lg font-bold mb-1">Apply to Volunteer</h3>
           <p className="text-emerald-200 text-sm">Book a volunteering slot for an upcoming date</p>
-          <span className="mt-3 inline-block text-yellow-300 text-sm group-hover:translate-x-1 transition-transform">Apply Now â†’</span>
+          <span className="mt-3 inline-block text-yellow-300 text-sm group-hover:translate-x-1 transition-transform">Apply Now →</span>
         </Link>
         <Link to="/history"
           className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-emerald-600 transition group">
-          <div className="text-3xl mb-3">ðŸ“‹</div>
+          <div className="text-3xl mb-3">📋</div>
           <h3 className="text-lg font-bold text-gray-800 mb-1">My Applications</h3>
           <p className="text-gray-500 text-sm">Track approval status of your applications</p>
-          <span className="mt-3 inline-block text-emerald-700 text-sm group-hover:translate-x-1 transition-transform">View All â†’</span>
+          <span className="mt-3 inline-block text-emerald-700 text-sm group-hover:translate-x-1 transition-transform">View All →</span>
         </Link>
       </div>
 
