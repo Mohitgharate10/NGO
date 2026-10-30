@@ -116,16 +116,6 @@ npm start
 
 ---
 
-## 🤝 Contact
-
-📬 **For collaboration, support, or questions, reach out to:**
-
-**Kalpesh Parmar**
-📧 Email: [kalpeshparmar1586@gmail.com](mailto:kalpeshparmar1586@gmail.com)
-🌐 Website: [kalpeshparmar.me](https://www.kalpeshparmar.me/)
-
----
-
 ⭐ **If you like this project, please star the repository on GitHub to show your support!**
 
 ---
