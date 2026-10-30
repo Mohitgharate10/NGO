@@ -1,6 +1,6 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API = (import.meta.env.VITE_API_URL !== undefined && import.meta.env.VITE_API_URL !== null) ? import.meta.env.VITE_API_URL : (import.meta.env.PROD ? "" : "http://localhost:5000");
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -41,10 +41,10 @@ export default function Contact() {
             <div className="bg-white rounded-2xl shadow-md p-6">
               <h2 className="text-xl font-bold text-[#004B8D] mb-4">Contact Information</h2>
               {[
-                { icon: "📍", label: "Address", value: "123 NGO Street, Ahmedabad, Gujarat 380001" },
-                { icon: "📞", label: "Phone", value: "+91 98765 43210" },
-                { icon: "✉️", label: "Email", value: "info@smilefoundation.org" },
-                { icon: "🕐", label: "Working Hours", value: "Mon–Sat: 9AM – 6PM" },
+                { icon: "ðŸ“", label: "Address", value: "123 NGO Street, Ahmedabad, Gujarat 380001" },
+                { icon: "ðŸ“ž", label: "Phone", value: "+91 98765 43210" },
+                { icon: "âœ‰ï¸", label: "Email", value: "info@smilefoundation.org" },
+                { icon: "ðŸ•", label: "Working Hours", value: "Monâ€“Sat: 9AM â€“ 6PM" },
               ].map(({ icon, label, value }) => (
                 <div key={label} className="flex gap-4 py-3 border-b last:border-0">
                   <span className="text-2xl">{icon}</span>
@@ -63,7 +63,7 @@ export default function Contact() {
                 href="/register"
                 className="inline-block bg-[#FFDE73] text-[#004B8D] font-semibold px-5 py-2 rounded-full text-sm hover:bg-yellow-400 transition"
               >
-                Join Now →
+                Join Now â†’
               </a>
             </div>
           </div>
@@ -74,12 +74,12 @@ export default function Contact() {
 
             {status === "success" && (
               <div className="bg-green-50 border border-green-200 text-green-700 rounded-xl px-4 py-3 text-sm mb-6 flex items-center gap-2">
-                <span>✅</span> Message sent! We'll get back to you soon.
+                <span>âœ…</span> Message sent! We'll get back to you soon.
               </div>
             )}
             {status === "error" && (
               <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm mb-6 flex items-center gap-2">
-                <span>❌</span> Something went wrong. Please try again.
+                <span>âŒ</span> Something went wrong. Please try again.
               </div>
             )}
 
@@ -131,7 +131,7 @@ export default function Contact() {
                     Sending...
                   </>
                 ) : (
-                  "Send Message ✉️"
+                  "Send Message âœ‰ï¸"
                 )}
               </button>
             </form>

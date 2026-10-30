@@ -1,9 +1,9 @@
-// FILE: NGO/frontend/src/pages/Event.jsx
+﻿// FILE: NGO/frontend/src/pages/Event.jsx
 // REPLACE the entire file with this
 
 import { useEffect, useState } from "react";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API = (import.meta.env.VITE_API_URL !== undefined && import.meta.env.VITE_API_URL !== null) ? import.meta.env.VITE_API_URL : (import.meta.env.PROD ? "" : "http://localhost:5000");
 
 const categoryColors = {
   Education:    { bg: "#eff6ff", border: "#3b82f6", text: "#1e40af", dot: "#3b82f6" },
@@ -121,7 +121,7 @@ export default function Event() {
   return (
     <div style={{ fontFamily: "'Segoe UI', sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
 
-      {/* ── HERO ── */}
+      {/* â”€â”€ HERO â”€â”€ */}
       <div style={{
         background: "linear-gradient(135deg, #004B8D 0%, #0369a1 50%, #0284c7 100%)",
         padding: "72px 24px 80px",
@@ -144,7 +144,7 @@ export default function Event() {
           </p>
           <div style={{ display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap" }}>
             <a href="#events" style={{ background:"white",color:"#004B8D",fontWeight:800,fontSize:14,padding:"12px 28px",borderRadius:12,textDecoration:"none",boxShadow:"0 4px 20px rgba(0,0,0,0.15)" }}>
-              Browse Events →
+              Browse Events â†’
             </a>
             <button onClick={()=>setShowForm(true)} style={{ background:"transparent",color:"white",fontWeight:700,fontSize:14,padding:"12px 28px",borderRadius:12,border:"2px solid rgba(255,255,255,0.4)",cursor:"pointer" }}>
               + Suggest an Event
@@ -154,14 +154,14 @@ export default function Event() {
         <style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}`}</style>
       </div>
 
-      {/* ── STATS BAR ── */}
+      {/* â”€â”€ STATS BAR â”€â”€ */}
       <div style={{ background:"white",borderBottom:"1px solid #e2e8f0",padding:"20px 24px" }}>
         <div style={{ maxWidth:1100,margin:"0 auto",display:"flex",gap:40,justifyContent:"center",flexWrap:"wrap" }}>
           {[
-            ["📅", allEvents.length, "Total Events"],
-            ["🌟", allEvents.reduce((s,e)=>s+(e.registered||0),0), "People Registered"],
-            ["📍", "5+", "Locations"],
-            ["🏆", "3", "Categories"],
+            ["ðŸ“…", allEvents.length, "Total Events"],
+            ["ðŸŒŸ", allEvents.reduce((s,e)=>s+(e.registered||0),0), "People Registered"],
+            ["ðŸ“", "5+", "Locations"],
+            ["ðŸ†", "3", "Categories"],
           ].map(([icon,val,label])=>(
             <div key={label} style={{ textAlign:"center" }}>
               <p style={{ fontSize:22,fontWeight:900,color:"#004B8D",margin:0 }}>{icon} {val}</p>
@@ -171,7 +171,7 @@ export default function Event() {
         </div>
       </div>
 
-      {/* ── MAIN CONTENT ── */}
+      {/* â”€â”€ MAIN CONTENT â”€â”€ */}
       <div id="events" style={{ maxWidth:1100,margin:"0 auto",padding:"48px 24px" }}>
 
         {/* Filter pills */}
@@ -235,11 +235,11 @@ export default function Event() {
                   {/* Meta */}
                   <div style={{ display:"flex",flexDirection:"column",gap:6,marginBottom:14 }}>
                     <div style={{ display:"flex",alignItems:"center",gap:6,fontSize:12,color:"#475569" }}>
-                      <span>📅</span>
+                      <span>ðŸ“…</span>
                       <span>{formatDate(event.date)}</span>
                     </div>
                     <div style={{ display:"flex",alignItems:"center",gap:6,fontSize:12,color:"#475569" }}>
-                      <span>📍</span>
+                      <span>ðŸ“</span>
                       <span>{event.location}</span>
                     </div>
                   </div>
@@ -266,7 +266,7 @@ export default function Event() {
                     onMouseLeave={e=>{ e.target.style.background=c.bg; e.target.style.color=c.text; }}
                     onClick={(e)=>{ e.stopPropagation(); setSelectedEvent(event); }}
                   >
-                    View Details →
+                    View Details â†’
                   </button>
                 </div>
               </div>
@@ -274,7 +274,7 @@ export default function Event() {
           })}
         </div>
 
-        {/* ── TIMELINE SECTION ── */}
+        {/* â”€â”€ TIMELINE SECTION â”€â”€ */}
         <div style={{ marginBottom:60 }}>
           <h2 style={{ fontSize:26,fontWeight:900,color:"#0f172a",margin:"0 0 8px" }}>Event Timeline</h2>
           <p style={{ color:"#64748b",fontSize:14,margin:"0 0 32px" }}>A quick look at what's coming up</p>
@@ -289,7 +289,7 @@ export default function Event() {
                     <div style={{ display:"flex",alignItems:"flex-start",justifyContent:"space-between",flexWrap:"wrap",gap:8 }}>
                       <div>
                         <p style={{ fontWeight:800,color:"#0f172a",fontSize:14,margin:"0 0 3px" }}>{event.title}</p>
-                        <p style={{ fontSize:12,color:"#64748b",margin:0 }}>📅 {formatDate(event.date)} &nbsp;·&nbsp; 📍 {event.location}</p>
+                        <p style={{ fontSize:12,color:"#64748b",margin:0 }}>ðŸ“… {formatDate(event.date)} &nbsp;Â·&nbsp; ðŸ“ {event.location}</p>
                       </div>
                       <span style={{ background:c.bg,color:c.text,fontSize:11,fontWeight:700,padding:"3px 10px",borderRadius:999,flexShrink:0 }}>
                         {event.category}
@@ -302,9 +302,9 @@ export default function Event() {
           </div>
         </div>
 
-        {/* ── CTA BANNER ── */}
+        {/* â”€â”€ CTA BANNER â”€â”€ */}
         <div style={{ background:"linear-gradient(135deg,#004B8D,#0369a1)",borderRadius:24,padding:"40px 36px",textAlign:"center",color:"white" }}>
-          <div style={{ fontSize:40,marginBottom:12 }}>🤝</div>
+          <div style={{ fontSize:40,marginBottom:12 }}>ðŸ¤</div>
           <h2 style={{ fontSize:24,fontWeight:900,margin:"0 0 10px" }}>Want to organise an event?</h2>
           <p style={{ color:"rgba(255,255,255,0.75)",fontSize:15,margin:"0 0 24px",maxWidth:480,marginInline:"auto" }}>
             Have an idea for a community initiative? Submit a request and our team will get back to you.
@@ -316,7 +316,7 @@ export default function Event() {
         </div>
       </div>
 
-      {/* ── EVENT DETAIL MODAL ── */}
+      {/* â”€â”€ EVENT DETAIL MODAL â”€â”€ */}
       {selectedEvent && (
         <div style={{ position:"fixed",inset:0,background:"rgba(0,0,0,0.6)",zIndex:50,display:"flex",alignItems:"center",justifyContent:"center",padding:24,backdropFilter:"blur(4px)" }}
           onClick={()=>setSelectedEvent(null)}>
@@ -330,7 +330,7 @@ export default function Event() {
               <div style={{ position:"absolute",inset:0,background:"linear-gradient(to top,rgba(0,0,0,0.5),transparent)" }}/>
               <button onClick={()=>setSelectedEvent(null)}
                 style={{ position:"absolute",top:14,right:14,width:32,height:32,borderRadius:"50%",background:"rgba(0,0,0,0.5)",border:"none",color:"white",fontSize:18,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center" }}>
-                ✕
+                âœ•
               </button>
             </div>
             <div style={{ padding:"24px 28px" }}>
@@ -346,10 +346,10 @@ export default function Event() {
                     <h2 style={{ fontSize:22,fontWeight:900,color:"#0f172a",margin:"0 0 12px" }}>{selectedEvent.title}</h2>
                     <p style={{ color:"#475569",fontSize:14,lineHeight:1.7,margin:"0 0 20px" }}>{selectedEvent.description}</p>
                     <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:20 }}>
-                      {[["📅 Date", formatDate(selectedEvent.date)],["📍 Location",selectedEvent.location]].map(([l,v])=>(
+                      {[["ðŸ“… Date", formatDate(selectedEvent.date)],["ðŸ“ Location",selectedEvent.location]].map(([l,v])=>(
                         <div key={l} style={{ background:"#f8fafc",borderRadius:12,padding:"12px 14px" }}>
                           <p style={{ fontSize:11,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",margin:"0 0 3px" }}>{l}</p>
-                          <p style={{ fontSize:13,fontWeight:700,color:"#0f172a",margin:0 }}>{v || "—"}</p>
+                          <p style={{ fontSize:13,fontWeight:700,color:"#0f172a",margin:0 }}>{v || "â€”"}</p>
                         </div>
                       ))}
                     </div>
@@ -365,7 +365,7 @@ export default function Event() {
                       </div>
                     )}
                     <a href="/contact" style={{ display:"block",textAlign:"center",background:"#004B8D",color:"white",fontWeight:800,fontSize:14,padding:"14px",borderRadius:14,textDecoration:"none" }}>
-                      Register Interest →
+                      Register Interest â†’
                     </a>
                   </>
                 );
@@ -375,7 +375,7 @@ export default function Event() {
         </div>
       )}
 
-      {/* ── SUGGEST EVENT MODAL ── */}
+      {/* â”€â”€ SUGGEST EVENT MODAL â”€â”€ */}
       {showForm && (
         <div style={{ position:"fixed",inset:0,background:"rgba(0,0,0,0.6)",zIndex:50,display:"flex",alignItems:"center",justifyContent:"center",padding:24,backdropFilter:"blur(4px)" }}
           onClick={()=>setShowForm(false)}>
@@ -388,18 +388,18 @@ export default function Event() {
               </div>
               <button onClick={()=>setShowForm(false)}
                 style={{ width:32,height:32,borderRadius:"50%",background:"rgba(255,255,255,0.15)",border:"none",color:"white",fontSize:18,cursor:"pointer" }}>
-                ✕
+                âœ•
               </button>
             </div>
             <div style={{ padding:"24px 28px" }}>
               {formStatus === "success" && (
                 <div style={{ background:"#ecfdf5",border:"1px solid #6ee7b7",color:"#065f46",borderRadius:12,padding:"12px 16px",fontSize:13,marginBottom:16,textAlign:"center",fontWeight:700 }}>
-                  ✅ Suggestion submitted! We'll be in touch soon.
+                  âœ… Suggestion submitted! We'll be in touch soon.
                 </div>
               )}
               {formStatus === "error" && (
                 <div style={{ background:"#fef2f2",border:"1px solid #fecaca",color:"#dc2626",borderRadius:12,padding:"12px 16px",fontSize:13,marginBottom:16 }}>
-                  ⚠️ Something went wrong. Please try again.
+                  âš ï¸ Something went wrong. Please try again.
                 </div>
               )}
               <form onSubmit={handleSuggest} style={{ display:"flex",flexDirection:"column",gap:12 }}>
@@ -435,7 +435,7 @@ export default function Event() {
                 </div>
                 <button type="submit" disabled={formLoading}
                   style={{ padding:"13px",background:"#004B8D",color:"white",fontWeight:800,fontSize:14,border:"none",borderRadius:12,cursor: formLoading ? "not-allowed" : "pointer",opacity: formLoading ? 0.7 : 1,fontFamily:"inherit",marginTop:4 }}>
-                  {formLoading ? "Submitting..." : "Submit Suggestion →"}
+                  {formLoading ? "Submitting..." : "Submit Suggestion â†’"}
                 </button>
               </form>
             </div>

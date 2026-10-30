@@ -21,25 +21,34 @@ app.use(cors());
 app.use(express.json());
 
 // ===== MONGODB CONNECT =====
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ Connected to MongoDB"))
-  .catch((err) => console.error("❌ MongoDB error:", err));
+if (process.env.MONGO_URI) {
+  mongoose
+    .connect(process.env.MONGO_URI)
+    .then(() => console.log("✅ Connected to MongoDB"))
+    .catch((err) => console.error("❌ MongoDB error:", err));
+} else {
+  console.warn("⚠️ MONGO_URI is not set. Please set MONGO_URI in your environment variables.");
+}
 
 // ===== NODEMAILER SETUP =====
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS, // App password from Google
+    user: process.env.EMAIL_USER || "",
+    pass: process.env.EMAIL_PASS || "",
   },
 });
 
 // ===== RAZORPAY SETUP =====
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
+let razorpay;
+try {
+  razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID || "dummy_key",
+    key_secret: process.env.RAZORPAY_KEY_SECRET || "dummy_secret",
+  });
+} catch (e) {
+  console.warn("⚠️ Razorpay initialization warning:", e.message);
+}
 
 // ===== AUTH MIDDLEWARE =====
 const authMiddleware = (roles = []) => (req, res, next) => {
@@ -370,6 +379,29 @@ app.get("/api/admin/stats", authMiddleware(["admin"]), async (req, res) => {
     res.status(500).json({ error: "Failed to fetch stats" });
   }
 });
+
+// ===== SERVE FRONTEND IN PRODUCTION =====
+const path = require("path");
+const fs = require("fs");
+
+const candidatePaths = [
+  path.join(__dirname, "../../frontend/dist"),
+  path.join(process.cwd(), "frontend/dist"),
+  path.join(__dirname, "../frontend/dist"),
+];
+const frontendDist = candidatePaths.find((p) => fs.existsSync(p));
+
+if (frontendDist) {
+  app.use(express.static(frontendDist));
+  app.get("/volunteer", (req, res) => res.sendFile(path.join(frontendDist, "volunteer.html")));
+  app.get("/donor", (req, res) => res.sendFile(path.join(frontendDist, "donor.html")));
+  app.get("/admin", (req, res) => res.sendFile(path.join(frontendDist, "admin.html")));
+  app.use((req, res, next) => {
+    if (req.method !== "GET" && req.method !== "HEAD") return next();
+    if (req.path.startsWith("/api")) return next();
+    res.sendFile(path.join(frontendDist, "index.html"));
+  });
+}
 
 // ===== START SERVER =====
 const PORT = process.env.PORT || 5000;

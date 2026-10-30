@@ -1,8 +1,8 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API = (import.meta.env.VITE_API_URL !== undefined && import.meta.env.VITE_API_URL !== null) ? import.meta.env.VITE_API_URL : (import.meta.env.PROD ? "" : "http://localhost:5000");
 
 export default function LoginPage({ portalRole = null }) {
   const defaultRole = portalRole || "donor";
@@ -17,8 +17,8 @@ export default function LoginPage({ portalRole = null }) {
   const isLocked = !!portalRole;
 
   const roles = [
-    { id: "donor",     label: "Donor",     emoji: "💝", grad: "linear-gradient(135deg,#1e40af,#3b82f6)", accent: "#1d4ed8", ring: "#3b82f6", softBg: "#eff6ff" },
-    { id: "volunteer", label: "Volunteer", emoji: "🌿", grad: "linear-gradient(135deg,#065f46,#10b981)", accent: "#047857", ring: "#10b981", softBg: "#ecfdf5" },
+    { id: "donor",     label: "Donor",     emoji: "ðŸ’", grad: "linear-gradient(135deg,#1e40af,#3b82f6)", accent: "#1d4ed8", ring: "#3b82f6", softBg: "#eff6ff" },
+    { id: "volunteer", label: "Volunteer", emoji: "ðŸŒ¿", grad: "linear-gradient(135deg,#065f46,#10b981)", accent: "#047857", ring: "#10b981", softBg: "#ecfdf5" },
   ];
   const sel = roles.find(r => r.id === role) || roles[0];
 
@@ -71,7 +71,7 @@ export default function LoginPage({ portalRole = null }) {
             {role === "donor" ? "Your generosity keeps us going. Every donation counts." : "Your time is the most precious gift. Thank you for volunteering."}
           </p>
           <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:16, marginTop:44 }}>
-            {[["95K+","Lives Touched"],["3.2K+","Volunteers"],["₹20L+","Raised"]].map(([n,l]) => (
+            {[["95K+","Lives Touched"],["3.2K+","Volunteers"],["â‚¹20L+","Raised"]].map(([n,l]) => (
               <div key={l}>
                 <p style={{ fontSize:22, fontWeight:900, margin:0 }}>{n}</p>
                 <p style={{ fontSize:11, color:"rgba(255,255,255,0.55)", margin:"3px 0 0", textTransform:"uppercase", letterSpacing:"0.4px" }}>{l}</p>
@@ -86,15 +86,15 @@ export default function LoginPage({ portalRole = null }) {
         <div style={{ width:"100%", maxWidth:440 }}>
           {/* Mobile logo */}
           <div className="lg-hide" style={{ textAlign:"center", marginBottom:28 }}>
-            <div style={{ fontSize:36 }}>🤝</div>
+            <div style={{ fontSize:36 }}>ðŸ¤</div>
             <h1 style={{ fontSize:20, fontWeight:900, color:"#0f172a", margin:"8px 0 0" }}>Smile Foundation</h1>
           </div>
 
           <div style={{ background:"white", borderRadius:28, boxShadow:"0 20px 60px rgba(0,0,0,0.08)", padding:"40px 36px" }}>
-            <h2 style={{ fontSize:26, fontWeight:900, color:"#0f172a", margin:"0 0 4px" }}>Welcome back 👋</h2>
+            <h2 style={{ fontSize:26, fontWeight:900, color:"#0f172a", margin:"0 0 4px" }}>Welcome back ðŸ‘‹</h2>
             <p style={{ color:"#94a3b8", fontSize:14, margin:"0 0 24px" }}>Sign in to continue making a difference</p>
 
-            {/* Role toggle — only on main site login */}
+            {/* Role toggle â€” only on main site login */}
             {!isLocked && (
               <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, marginBottom:24 }}>
                 {roles.map(r => (
@@ -120,7 +120,7 @@ export default function LoginPage({ portalRole = null }) {
 
             {error && (
               <div style={{ background:"#fef2f2", border:"1px solid #fecaca", color:"#dc2626", borderRadius:12, padding:"12px 16px", fontSize:13, marginBottom:18 }}>
-                ⚠️ {error}
+                âš ï¸ {error}
               </div>
             )}
 
@@ -138,12 +138,12 @@ export default function LoginPage({ portalRole = null }) {
                   onFocus={e=>e.target.style.borderColor=sel.ring} onBlur={e=>e.target.style.borderColor="#e2e8f0"} />
                 <button type="button" onClick={()=>setShowPass(!showPass)}
                   style={{ position:"absolute", right:14, bottom:14, background:"none", border:"none", cursor:"pointer", fontSize:16, padding:0 }}>
-                  {showPass?"🙈":"👁️"}
+                  {showPass?"ðŸ™ˆ":"ðŸ‘ï¸"}
                 </button>
               </div>
               <button type="submit" disabled={loading}
                 style={{ width:"100%", padding:"15px", background:loading?"#94a3b8":sel.accent, color:"white", fontWeight:800, fontSize:15, border:"none", borderRadius:14, cursor:loading?"not-allowed":"pointer", fontFamily:"inherit", transition:"background 0.2s" }}>
-                {loading ? "Signing in..." : `Sign in as ${sel.label} →`}
+                {loading ? "Signing in..." : `Sign in as ${sel.label} â†’`}
               </button>
             </form>
 

@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API = (import.meta.env.VITE_API_URL !== undefined && import.meta.env.VITE_API_URL !== null) ? import.meta.env.VITE_API_URL : (import.meta.env.PROD ? "" : "http://localhost:5000");
 const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY_ID;
 
 // Load Razorpay script dynamically
@@ -23,11 +23,11 @@ const todayLocal = () => {
 };
 
 const donationTypes = [
-  { value: "money", label: "Money", icon: "💰", desc: "Secure online payment" },
-  { value: "food", label: "Food", icon: "🍱", desc: "Cooked or packed meals" },
-  { value: "clothing", label: "Clothing", icon: "👕", desc: "Wearable items" },
-  { value: "education", label: "Education", icon: "📚", desc: "Books, stationery" },
-  { value: "medical", label: "Medical", icon: "💊", desc: "Medicines, kits" },
+  { value: "money", label: "Money", icon: "ðŸ’°", desc: "Secure online payment" },
+  { value: "food", label: "Food", icon: "ðŸ±", desc: "Cooked or packed meals" },
+  { value: "clothing", label: "Clothing", icon: "ðŸ‘•", desc: "Wearable items" },
+  { value: "education", label: "Education", icon: "ðŸ“š", desc: "Books, stationery" },
+  { value: "medical", label: "Medical", icon: "ðŸ’Š", desc: "Medicines, kits" },
 ];
 
 const quickAmounts = [100, 250, 500, 1000, 2500, 5000];
@@ -166,12 +166,12 @@ export default function DonorDonate() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="bg-white rounded-3xl shadow-lg p-12 text-center max-w-md w-full border border-gray-100">
           <div className="w-20 h-20 rounded-full flex items-center justify-center text-4xl mx-auto mb-5"
-            style={{ background: "#dbeafe" }}>🙏</div>
+            style={{ background: "#dbeafe" }}>ðŸ™</div>
           <h2 className="text-2xl font-black text-gray-900 mb-2">Thank You, {user?.name}!</h2>
           <p className="text-gray-500 mb-2">Your donation has been recorded.</p>
           {form.donationType === "money" && (
             <p className="text-sm text-green-600 font-semibold mb-6">
-              ₹{Number(form.amount).toLocaleString("en-IN")} · Payment Verified ✓
+              â‚¹{Number(form.amount).toLocaleString("en-IN")} Â· Payment Verified âœ“
             </p>
           )}
           <p className="text-gray-400 text-xs mb-8">A confirmation has been sent to {user?.email}</p>
@@ -194,13 +194,13 @@ export default function DonorDonate() {
 
   return (
     <div>
-      <h1 className="text-2xl font-black text-gray-900 mb-1">Make a Donation 💝</h1>
+      <h1 className="text-2xl font-black text-gray-900 mb-1">Make a Donation ðŸ’</h1>
       <p className="text-gray-500 mb-8">Your generosity helps us reach more lives. 100% transparent.</p>
 
       <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 max-w-2xl">
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm mb-6 flex items-start gap-2">
-            <span>⚠️</span> {error}
+            <span>âš ï¸</span> {error}
           </div>
         )}
 
@@ -226,7 +226,7 @@ export default function DonorDonate() {
           {/* Amount (money only) */}
           {form.donationType === "money" && (
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-3">Amount (₹) *</label>
+              <label className="block text-sm font-bold text-gray-700 mb-3">Amount (â‚¹) *</label>
               <div className="flex flex-wrap gap-2 mb-3">
                 {quickAmounts.map((v) => (
                   <button key={v} type="button"
@@ -235,7 +235,7 @@ export default function DonorDonate() {
                       ? "text-white border-[#004B8D]"
                       : "border-gray-200 text-gray-600 hover:border-[#004B8D]"}`}
                     style={Number(form.amount) === v ? { background: "#004B8D" } : {}}>
-                    ₹{v.toLocaleString("en-IN")}
+                    â‚¹{v.toLocaleString("en-IN")}
                   </button>
                 ))}
               </div>
@@ -290,15 +290,15 @@ export default function DonorDonate() {
                 </svg>
                 Processing...
               </>
-            ) : form.donationType === "money" ? "💳 Pay & Donate" : "📦 Submit Donation"}
+            ) : form.donationType === "money" ? "ðŸ’³ Pay & Donate" : "ðŸ“¦ Submit Donation"}
           </button>
 
           {form.donationType === "money" && (
             <div className="flex items-center justify-center gap-4 text-xs text-gray-400">
-              <span>🔒 Razorpay Secured</span>
-              <span>·</span>
-              <span>UPI · Cards · Net Banking</span>
-              <span>·</span>
+              <span>ðŸ”’ Razorpay Secured</span>
+              <span>Â·</span>
+              <span>UPI Â· Cards Â· Net Banking</span>
+              <span>Â·</span>
               <span>Wallets accepted</span>
             </div>
           )}

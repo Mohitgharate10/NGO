@@ -1,8 +1,8 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API = (import.meta.env.VITE_API_URL !== undefined && import.meta.env.VITE_API_URL !== null) ? import.meta.env.VITE_API_URL : (import.meta.env.PROD ? "" : "http://localhost:5000");
 
 export default function AdminLogin({ redirectTo = null }) {
   const [email, setEmail] = useState("");
@@ -85,10 +85,10 @@ export default function AdminLogin({ redirectTo = null }) {
             fontSize:32, marginBottom:16,
             boxShadow:"0 8px 32px rgba(245,158,11,0.3)",
           }}>
-            🛡️
+            ðŸ›¡ï¸
           </div>
           <h1 style={{ color:"white", fontSize:24, fontWeight:900, margin:0, letterSpacing:"-0.5px" }}>Admin Portal</h1>
-          <p style={{ color:"#64748b", fontSize:13, margin:"6px 0 0" }}>Smile Foundation · Authorized Access Only</p>
+          <p style={{ color:"#64748b", fontSize:13, margin:"6px 0 0" }}>Smile Foundation Â· Authorized Access Only</p>
         </div>
 
         {/* Card */}
@@ -101,7 +101,7 @@ export default function AdminLogin({ redirectTo = null }) {
         }}>
           {error && (
             <div style={{ background:"rgba(239,68,68,0.1)", border:"1px solid rgba(239,68,68,0.25)", color:"#f87171", borderRadius:12, padding:"12px 16px", fontSize:13, marginBottom:20, display:"flex", gap:8, alignItems:"center" }}>
-              ⚠️ {error}
+              âš ï¸ {error}
             </div>
           )}
 
@@ -131,7 +131,7 @@ export default function AdminLogin({ redirectTo = null }) {
                 />
                 <button type="button" onClick={()=>setShowPass(!showPass)}
                   style={{ position:"absolute", right:14, top:"50%", transform:"translateY(-50%)", background:"none", border:"none", cursor:"pointer", fontSize:16, padding:0 }}>
-                  {showPass ? "🙈" : "👁️"}
+                  {showPass ? "ðŸ™ˆ" : "ðŸ‘ï¸"}
                 </button>
               </div>
             </div>
@@ -149,7 +149,7 @@ export default function AdminLogin({ redirectTo = null }) {
                 transition:"all 0.2s",
               }}
             >
-              {loading ? "Authenticating..." : "🔐  Sign In to Admin Panel"}
+              {loading ? "Authenticating..." : "ðŸ”  Sign In to Admin Panel"}
             </button>
           </form>
 
@@ -158,7 +158,7 @@ export default function AdminLogin({ redirectTo = null }) {
               Not an admin?{" "}
              
 <a href="/" style={{ color:"#f59e0b", fontWeight:700, textDecoration:"none" }}>
-  Back to Main Site →
+  Back to Main Site â†’
 </a>
             </p>
           </div>
@@ -166,7 +166,7 @@ export default function AdminLogin({ redirectTo = null }) {
 
         {/* Security badge */}
         <p style={{ textAlign:"center", fontSize:11, color:"#334155", marginTop:20 }}>
-          🔒 Secured connection · All access is logged
+          ðŸ”’ Secured connection Â· All access is logged
         </p>
       </div>
     </div>

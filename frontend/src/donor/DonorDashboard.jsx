@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API = (import.meta.env.VITE_API_URL !== undefined && import.meta.env.VITE_API_URL !== null) ? import.meta.env.VITE_API_URL : (import.meta.env.PROD ? "" : "http://localhost:5000");
 
 export default function DonorDashboard() {
   const { user, token } = useAuth();
@@ -23,15 +23,15 @@ export default function DonorDashboard() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-800 mb-1">Welcome back, {user?.name}! 👋</h1>
+      <h1 className="text-2xl font-bold text-gray-800 mb-1">Welcome back, {user?.name}! ðŸ‘‹</h1>
       <p className="text-gray-500 mb-8">Thank you for your generous support.</p>
 
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
-        <StatCard icon="📦" label="Total Donations" value={donations.length} color="blue" />
-        <StatCard icon="💰" label="Money Donated" value={`₹${totalMoney.toLocaleString("en-IN")}`} color="green" />
+        <StatCard icon="ðŸ“¦" label="Total Donations" value={donations.length} color="blue" />
+        <StatCard icon="ðŸ’°" label="Money Donated" value={`â‚¹${totalMoney.toLocaleString("en-IN")}`} color="green" />
         <StatCard
-          icon="🏆"
+          icon="ðŸ†"
           label="Status"
           value={donations.length > 5 ? "Champion" : donations.length > 2 ? "Active" : "New Donor"}
           color="yellow"
@@ -44,22 +44,22 @@ export default function DonorDashboard() {
           to="/donate"
           className="bg-[#004B8D] text-white rounded-2xl p-6 hover:bg-blue-800 transition group"
         >
-          <div className="text-3xl mb-3">💝</div>
+          <div className="text-3xl mb-3">ðŸ’</div>
           <h3 className="text-lg font-bold mb-1">Make a Donation</h3>
           <p className="text-blue-200 text-sm">Donate money, food, clothes or medical supplies</p>
           <span className="mt-3 inline-block text-[#FFDE73] text-sm group-hover:translate-x-1 transition-transform">
-            Donate Now →
+            Donate Now â†’
           </span>
         </Link>
         <Link
           to="/history"
           className="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-[#004B8D] transition group"
         >
-          <div className="text-3xl mb-3">📋</div>
+          <div className="text-3xl mb-3">ðŸ“‹</div>
           <h3 className="text-lg font-bold text-gray-800 mb-1">View History</h3>
           <p className="text-gray-500 text-sm">See all your past donations and their status</p>
           <span className="mt-3 inline-block text-[#004B8D] text-sm group-hover:translate-x-1 transition-transform">
-            View All →
+            View All â†’
           </span>
         </Link>
       </div>
@@ -77,7 +77,7 @@ export default function DonorDashboard() {
                 </div>
                 <div className="text-right">
                   {d.donationType === "money" && (
-                    <p className="text-sm font-bold text-[#004B8D]">₹{d.amount?.toLocaleString("en-IN")}</p>
+                    <p className="text-sm font-bold text-[#004B8D]">â‚¹{d.amount?.toLocaleString("en-IN")}</p>
                   )}
                   <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
                     d.paymentStatus === "paid" ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"
