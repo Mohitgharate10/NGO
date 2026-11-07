@@ -1,128 +1,57 @@
 # Contributing to NGOConnect
 
-Thank you for considering contributing to **NGOConnect**. Together, we can build tools that empower non-profits, volunteers, and donors worldwide.
+Thanks for contributing. Bug fixes, documentation improvements, accessibility work, tests, and product enhancements are all welcome.
 
----
+## Start with an issue
 
-## Table of Contents
+Search the [issue tracker](https://github.com/Mohitgharate10/NGO/issues) first. For substantial changes, create an issue describing the problem, intended users, proposed approach, and any data or payment impact before writing code.
 
-- [Code of Conduct](#code-of-conduct)
-- [How Can I Contribute?](#how-can-i-contribute)
-- [Local Development Setup](#local-development-setup)
-- [Coding Guidelines](#coding-guidelines)
-- [Commit Message Standards](#commit-message-standards)
-- [Submitting a Pull Request](#submitting-a-pull-request)
+Do not post credentials, payment details, personal information, or security vulnerabilities in public issues.
 
----
+## Local setup
 
-## Code of Conduct
+```bash
+git clone https://github.com/<your-username>/NGO.git
+cd NGO
 
-We are dedicated to creating a welcoming, respectful, and safe community. Please be polite, empathetic, and constructive in all discussions, issues, and code reviews.
-
----
-
-## How Can I Contribute?
-
-### 1. Reporting Bugs
-- Verify that the issue has not already been logged under [Issues](https://github.com/Mohitgharate10/NGO/issues).
-- Provide a clear and descriptive issue title.
-- Detail the exact reproduction steps, expected vs. actual outcomes, browser version, and console error messages.
-
-### 2. Suggesting Features
-- Propose new features or enhancements by creating an issue labeled `enhancement`.
-- Describe the motivation, target audience (donor, volunteer, or admin), and proposed workflow.
-
-### 3. Submitting Improvements
-- Feel free to pick up any open issue or propose an improvement (UI polish, API optimization, accessibility, tests).
-
----
-
-## Local Development Setup
-
-1. **Fork and Clone**
-   ```bash
-   git clone https://github.com/<your-username>/NGO.git
-   cd NGO
-   ```
-
-2. **Branch Naming**
-   Create a descriptive feature branch:
-   ```bash
-   git checkout -b feat/donation-receipt-pdf
-   # or
-   git checkout -b fix/admin-sidebar-mobile
-   ```
-
-3. **Backend Setup**
-   ```bash
-   cd backend
-   npm install
-   # Create server/.env with your MONGO_URI and JWT_SECRET
-   npm run dev
-   ```
-
-4. **Frontend Setup**
-   ```bash
-   cd ../frontend
-   npm install
-   npm run dev
-   ```
-
-5. **Test Your Changes**
-   - Verify frontend interactions at `http://localhost:5173`.
-   - Verify backend APIs responding correctly on `http://localhost:5000`.
-
----
-
-## Coding Guidelines
-
-### Frontend (React + Vite + Tailwind CSS)
-- Maintain modular component structures in `frontend/src/componants`, `frontend/src/pages`, and `frontend/src/admin`.
-- Use Tailwind CSS utility classes; avoid inline styles.
-- Follow functional React component patterns with hooks.
-- Keep responsive design intact for mobile, tablet, and desktop viewports.
-
-### Backend (Node.js + Express + Mongoose)
-- Place route handlers and database queries cleanly, keeping error handling robust (`try/catch` with informative status codes).
-- Protect sensitive endpoints with the `jwt` authentication middleware.
-- Never hardcode secrets, API keys, or database credentials; always utilize environment variables.
-
----
-
-## Commit Message Standards
-
-We recommend following the [Conventional Commits](https://www.conventionalcommits.org/) convention:
-
-```text
-<type>: <short description>
-
-[optional body]
+cd backend && npm install
+cd ../frontend && npm install
 ```
 
-**Common prefixes:**
-- `feat:` for new capabilities
-- `fix:` for bug fixes
-- `docs:` for documentation updates
-- `style:` for code style or UI tweaks
-- `refactor:` for internal improvements without functional change
+Create local environment files as described in the [README](README.md). Keep all secrets out of version control. Run the backend with `npm run dev` from `backend/` and the frontend with `npm run dev` from `frontend/`.
 
----
+## Code guidelines
 
-## Submitting a Pull Request
+- Keep frontend work organized within `frontend/src`; use React function components, hooks, and Tailwind utilities.
+- Keep API and database work in `backend/`, with clear validation, explicit error handling, and appropriate authorization checks.
+- Preserve responsive layouts and keyboard-accessible interactions.
+- Never hardcode database credentials, JWT secrets, SMTP passwords, or Razorpay secrets.
+- Treat payment and role-management changes as security-sensitive and include focused testing notes in the pull request.
 
-1. Ensure the code compiles cleanly and there are no lint or runtime console errors.
-2. Commit your changes:
-   ```bash
-   git add .
-   git commit -m "feat(volunteer): add availability filter to admin volunteer dashboard"
-   ```
-3. Push to your fork:
-   ```bash
-   git push origin feat/your-feature-name
-   ```
-4. Open a Pull Request on GitHub against the `main` branch of `Mohitgharate10/NGO`.
-5. Clearly describe the changes and link any related issues.
+## Branches and commits
 
----
+Create focused branches from `main`, such as `feat/donation-receipts` or `fix/admin-navigation`.
 
-Thank you for contributing to NGOConnect.
+Use clear commits:
+
+```text
+feat(volunteers): add availability filtering
+fix(donations): validate payment verification input
+docs(readme): clarify environment setup
+```
+
+## Pull requests
+
+Before opening a pull request:
+
+1. Run `npm run lint` from `frontend/`.
+2. Build the frontend with `npm run build`.
+3. Manually verify any affected frontend flow and API endpoint.
+4. Add screenshots for visible UI changes and explain any environment changes.
+5. Link related issues and describe both user-facing behavior and testing performed.
+
+## Security reporting
+
+For authentication, payment, secrets, or authorization concerns, contact the repository owner privately instead of opening a public issue.
+
+Thank you for helping make NGOConnect more useful and trustworthy.
