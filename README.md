@@ -1,15 +1,5 @@
 # NGOConnect
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Express](https://img.shields.io/badge/Express-4.18-000000?logo=express&logoColor=white)](https://expressjs.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![Razorpay](https://img.shields.io/badge/Razorpay-Payment_Gateway-02042B?logo=razorpay&logoColor=white)](https://razorpay.com/)
-[![Live Demo](https://img.shields.io/badge/Demo-Live%20on%20Render-success)](https://ngo-platform-r52v.onrender.com)
-
 > **A full-stack charity and NGO management platform connecting donors, volunteers, and causes with secure Razorpay donations, real-time campaign tracking, automated notifications, and an administrative control center.**
 
 [Live Application](https://ngo-platform-r52v.onrender.com) • [Key Features](#key-features) • [Getting Started](#getting-started) • [Tech Stack](#tech-stack) • [Contributing](CONTRIBUTING.md)
