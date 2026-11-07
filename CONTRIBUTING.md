@@ -1,10 +1,10 @@
 # Contributing to NGOConnect
 
-Thank you for considering contributing to **NGOConnect**! Together, we can build tools that empower non-profits, volunteers, and donors worldwide.
+Thank you for considering contributing to **NGOConnect**. Together, we can build tools that empower non-profits, volunteers, and donors worldwide.
 
 ---
 
-## 📌 Table of Contents
+## Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [How Can I Contribute?](#how-can-i-contribute)
@@ -15,13 +15,13 @@ Thank you for considering contributing to **NGOConnect**! Together, we can build
 
 ---
 
-## 🤝 Code of Conduct
+## Code of Conduct
 
 We are dedicated to creating a welcoming, respectful, and safe community. Please be polite, empathetic, and constructive in all discussions, issues, and code reviews.
 
 ---
 
-## 💡 How Can I Contribute?
+## How Can I Contribute?
 
 ### 1. Reporting Bugs
 - Verify that the issue has not already been logged under [Issues](https://github.com/Mohitgharate10/NGO/issues).
@@ -37,7 +37,7 @@ We are dedicated to creating a welcoming, respectful, and safe community. Please
 
 ---
 
-## 🛠️ Local Development Setup
+## Local Development Setup
 
 1. **Fork and Clone**
    ```bash
@@ -74,7 +74,7 @@ We are dedicated to creating a welcoming, respectful, and safe community. Please
 
 ---
 
-## 📐 Coding Guidelines
+## Coding Guidelines
 
 ### Frontend (React + Vite + Tailwind CSS)
 - Maintain modular component structures in `frontend/src/componants`, `frontend/src/pages`, and `frontend/src/admin`.
@@ -85,11 +85,11 @@ We are dedicated to creating a welcoming, respectful, and safe community. Please
 ### Backend (Node.js + Express + Mongoose)
 - Place route handlers and database queries cleanly, keeping error handling robust (`try/catch` with informative status codes).
 - Protect sensitive endpoints with the `jwt` authentication middleware.
-- Never hardcode secrets, API keys, or database credentials — always utilize environment variables.
+- Never hardcode secrets, API keys, or database credentials; always utilize environment variables.
 
 ---
 
-## 📝 Commit Message Standards
+## Commit Message Standards
 
 We recommend following the [Conventional Commits](https://www.conventionalcommits.org/) convention:
 
@@ -108,7 +108,7 @@ We recommend following the [Conventional Commits](https://www.conventionalcommit
 
 ---
 
-## 🚀 Submitting a Pull Request
+## Submitting a Pull Request
 
 1. Ensure the code compiles cleanly and there are no lint or runtime console errors.
 2. Commit your changes:
@@ -125,4 +125,4 @@ We recommend following the [Conventional Commits](https://www.conventionalcommit
 
 ---
 
-Thank you for contributing to NGOConnect! 🌍
+Thank you for contributing to NGOConnect.
